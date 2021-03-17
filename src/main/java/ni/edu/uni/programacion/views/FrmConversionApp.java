@@ -59,6 +59,11 @@ public class FrmConversionApp extends javax.swing.JFrame {
         pnlLeftButtons.add(btnTemp);
 
         btnCurr.setText("Moneda");
+        btnCurr.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCurrActionPerformed(evt);
+            }
+        });
         pnlLeftButtons.add(btnCurr);
 
         getContentPane().add(pnlLeftButtons, java.awt.BorderLayout.LINE_START);
@@ -84,20 +89,20 @@ public class FrmConversionApp extends javax.swing.JFrame {
         pnlContent.add(pnlCalculator, BorderLayout.CENTER);
         validate();
     }//GEN-LAST:event_btnCalcActionPerformed
-private void btnCurrActionPerformed(java.awt.event.ActionEvent evt) {                                        
+
+    private void btnCurrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCurrActionPerformed
         if(pnlconversor == null){
             pnlconversor = new PnlConversor();
             conversorcontroller = new ConversorController(pnlconversor);
         }
-        
-        if(pnlContent.getComponentCount() > 0){
-            pnlContent.remove(0);
-        }
-        
-        pnlContent.add(pnlconversor, BorderLayout.CENTER);
-        validate();
-    }               
-    
+       if(pnlContent.getComponentCount() >0){
+           pnlContent.remove(0);
+       }
+       
+       pnlContent.add(pnlconversor, BorderLayout.CENTER);
+       validate();
+    }//GEN-LAST:event_btnCurrActionPerformed
+
     /**
      * @param args the command line arguments
      */

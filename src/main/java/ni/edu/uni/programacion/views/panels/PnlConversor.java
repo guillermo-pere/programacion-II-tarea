@@ -22,19 +22,19 @@ public class PnlConversor extends javax.swing.JPanel {
     }
 
     public JButton getBtnConv1() {
-        return BtnConv2;
+        return BtnConv1;
     }
 
     public void setBtnConv1(JButton BtnConv1) {
-        this.BtnConv2 = BtnConv1;
+        this.BtnConv1 = BtnConv1;
     }
 
     public JButton getBtnConv2() {
-        return BtnConv3;
+        return BtnConv2;
     }
 
     public void setBtnConv2(JButton BtnConv2) {
-        this.BtnConv3 = BtnConv2;
+        this.BtnConv2 = BtnConv2;
     }
 
     public JTextField getTxtConv1() {
