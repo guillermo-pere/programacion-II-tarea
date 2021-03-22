@@ -37,6 +37,12 @@ public class PnlEditor extends javax.swing.JPanel {
         return txtaEditor;
     }
 
+    public void setTxtaEditor(JTextArea txtaEditor) {
+        this.txtaEditor = txtaEditor;
+    }
+    
+    
+
     
     /**
      * This method is called from within the constructor to initialize the form.

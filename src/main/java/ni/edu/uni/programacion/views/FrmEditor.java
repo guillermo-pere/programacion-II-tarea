@@ -5,7 +5,15 @@
  */
 package ni.edu.uni.programacion.views;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.JTabbedPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import ni.edu.uni.programacion.views.panels.PnlEditor;
 
 /**
@@ -42,6 +50,9 @@ public class FrmEditor extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         mniExit = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Text Editor");
@@ -75,21 +86,48 @@ public class FrmEditor extends javax.swing.JFrame {
         mnFile.add(mniNew);
 
         mniOpen.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        mniOpen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/openfile.png"))); // NOI18N
         mniOpen.setText("Open");
+        mniOpen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniOpenActionPerformed(evt);
+            }
+        });
         mnFile.add(mniOpen);
 
         mniSaveAs.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        mniSaveAs.setIcon(new javax.swing.ImageIcon(getClass().getResource("/save as.png"))); // NOI18N
         mniSaveAs.setText("Save As");
+        mniSaveAs.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniSaveAsActionPerformed(evt);
+            }
+        });
         mnFile.add(mniSaveAs);
         mnFile.add(jSeparator1);
 
         mniExit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         mniExit.setText("Exit");
+        mniExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniExitActionPerformed(evt);
+            }
+        });
         mnFile.add(mniExit);
 
         jMenuBar1.add(mnFile);
 
         jMenu2.setText("Edit");
+
+        jMenuItem1.setText("Editar");
+        jMenu2.add(jMenuItem1);
+
+        jMenuItem2.setText("Tamaño");
+        jMenu2.add(jMenuItem2);
+
+        jMenuItem3.setText("Tipo");
+        jMenu2.add(jMenuItem3);
+
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
@@ -119,6 +157,90 @@ public class FrmEditor extends javax.swing.JFrame {
         tbpContent.remove(index);
     }//GEN-LAST:event_btnCloseTabActionPerformed
 
+    private void mniOpenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniOpenActionPerformed
+        PnlEditor pnlEditor = new PnlEditor();
+        pnlEditor.getTxtaEditor().setText(abrirArchivo());
+        tbpContent.addTab("Editor "+countTab++ , pnlEditor);
+    }//GEN-LAST:event_mniOpenActionPerformed
+
+    private void mniSaveAsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniSaveAsActionPerformed
+        
+        String text = "lel";
+        PnlEditor pnlEditor = new PnlEditor();
+        int index = tbpContent.getSelectedIndex();
+        PnlEditor panel =  (PnlEditor) tbpContent.getComponent(index);
+        text = panel.getTxtaEditor().getText();
+        pnlEditor.getTxtaEditor().setText(text);
+        guardarArchivo(pnlEditor);
+    }//GEN-LAST:event_mniSaveAsActionPerformed
+
+    private void mniExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniExitActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_mniExitActionPerformed
+
+    private void guardarArchivo(PnlEditor texto) {
+ try
+ {
+  String nombre="";
+  JFileChooser file=new JFileChooser();
+  file.showSaveDialog(this);
+  File guarda =file.getSelectedFile();
+
+  if(guarda !=null)
+  {
+   /*guardamos el archivo y le damos el formato directamente,
+    * si queremos que se guarde en formato doc lo definimos como .doc*/
+    FileWriter  save=new FileWriter(guarda+".txt");
+    save.write(texto.getTxtaEditor().getText());
+    save.close();
+    JOptionPane.showMessageDialog(null,
+         "El archivo se a guardado Exitosamente",
+             "Información",JOptionPane.INFORMATION_MESSAGE);
+    }
+ }
+  catch(IOException ex)
+  {
+   JOptionPane.showMessageDialog(null,
+        "Su archivo no se ha guardado",
+           "Advertencia",JOptionPane.WARNING_MESSAGE);
+  }
+ }
+    
+    private String abrirArchivo() {
+  String aux="";   
+  String texto="";
+  try
+  {
+   /**llamamos el metodo que permite cargar la ventana*/
+   JFileChooser file=new JFileChooser();
+   FileNameExtensionFilter filter = new FileNameExtensionFilter("txt", "txt");
+   file.setFileFilter(filter);
+   file.showOpenDialog(this);
+   /**abrimos el archivo seleccionado*/
+   File abre=file.getSelectedFile();
+
+   /**recorremos el archivo, lo leemos para plasmarlo
+   *en el area de texto*/
+   if(abre!=null)
+   {     
+      FileReader archivos=new FileReader(abre);
+      BufferedReader lee=new BufferedReader(archivos);
+      while((aux=lee.readLine())!=null)
+      {
+         texto+= aux+ "\n";
+      }
+         lee.close();
+    }    
+   }
+   catch(IOException ex)
+   {
+     JOptionPane.showMessageDialog(null,ex+"" +
+           "\nNo se ha encontrado el archivo",
+                 "ADVERTENCIA!!!",JOptionPane.WARNING_MESSAGE);
+    }
+  return texto;//El texto se almacena en el JTextArea
+}
+    
     /**
      * @param args the command line arguments
      */
@@ -158,6 +280,9 @@ public class FrmEditor extends javax.swing.JFrame {
     private javax.swing.JButton btnCloseTab;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JMenu mnFile;
