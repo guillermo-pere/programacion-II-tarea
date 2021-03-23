@@ -119,13 +119,13 @@ public class FrmEditor extends javax.swing.JFrame {
 
         jMenu2.setText("Edit");
 
-        jMenuItem1.setText("Editar");
+        jMenuItem1.setText("Fuente");
         jMenu2.add(jMenuItem1);
 
         jMenuItem2.setText("Tamaño");
         jMenu2.add(jMenuItem2);
 
-        jMenuItem3.setText("Tipo");
+        jMenuItem3.setText("Alineacion");
         jMenu2.add(jMenuItem3);
 
         jMenuBar1.add(jMenu2);
