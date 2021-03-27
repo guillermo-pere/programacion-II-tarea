@@ -107,6 +107,20 @@ public class PnlVehicleController {
         if(pnlVehicle.getTxtStock().getText().isEmpty()){
             return;
         }
+        if(pnlVehicle.getTxtEngine().getText().isEmpty()){
+            return;
+        }
+        if(pnlVehicle.getFmtVin().getText().isEmpty()){
+            return;
+        }
+        if(pnlVehicle.getTxtStyle().getText().isEmpty()){
+            return;
+        }
+        if(pnlVehicle.getTxtImage().getText().isEmpty()){
+            return;
+        }
+        
+        
         stock = Integer.parseInt(pnlVehicle.getTxtStock().getText());
         year = Integer.parseInt(pnlVehicle.getCmbYear().getSelectedItem().toString());
         make = pnlVehicle.getCmbMake().getSelectedItem().toString();

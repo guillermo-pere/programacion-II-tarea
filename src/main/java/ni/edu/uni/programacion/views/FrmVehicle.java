@@ -6,17 +6,25 @@
 package ni.edu.uni.programacion.views;
 
 import java.awt.BorderLayout;
+import java.io.FileNotFoundException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JComponent;
 import ni.edu.uni.programacion.controllers.PnlVehicleController;
+import ni.edu.uni.programacion.controllers.PnlViewController;
 import ni.edu.uni.programacion.views.panels.PnlVehicle;
+import ni.edu.uni.programacion.views.panels.PnlView;
 
 /**
  *
  * @author Sistemas-05
  */
 public class FrmVehicle extends javax.swing.JFrame {
+    private PnlView pnlView;
     private PnlVehicle pnlVehicle;
     private PnlVehicleController pnlVehicleController;
+    private PnlViewController pnlViewController;
+    
     
     /**
      * Creates new form FrmVehicle
@@ -58,6 +66,11 @@ public class FrmVehicle extends javax.swing.JFrame {
         jPanel1.add(btnNew);
 
         btnView.setText("View");
+        btnView.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnView);
 
         jSplitPane1.setLeftComponent(jPanel1);
@@ -81,11 +94,24 @@ public class FrmVehicle extends javax.swing.JFrame {
     private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
         if(pnlVehicle == null){
             pnlVehicle = new PnlVehicle();
-            pnlVehicleController = new  PnlVehicleController(pnlVehicle);
+            try {
+                pnlVehicleController = new  PnlVehicleController(pnlVehicle);
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(FrmVehicle.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         
         addComponent(pnlVehicle);
     }//GEN-LAST:event_btnNewActionPerformed
+
+    private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
+        if(pnlView == null){
+            pnlView = new PnlView();
+            pnlViewController = new PnlViewController(pnlView);
+        }
+        
+        addComponent(pnlView);
+    }//GEN-LAST:event_btnViewActionPerformed
 
      private void addComponent(JComponent component) {
         pnlContent.removeAll();
