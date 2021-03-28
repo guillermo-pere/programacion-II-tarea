@@ -6,6 +6,7 @@
 package ni.edu.uni.programacion.controllers;
 
 import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Collection;
@@ -13,7 +14,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.RowFilter;
 import javax.swing.table.AbstractTableModel;
+import javax.swing.table.TableRowSorter;
 import ni.edu.uni.programacion.backend.dao.implementation.JsonVehicleDaoImpl;
 import ni.edu.uni.programacion.backend.pojo.Vehicle;
 import ni.edu.uni.programacion.views.panels.PnlView;
@@ -35,13 +38,29 @@ public class PnlViewController {
     }
     
     private void initComponent(){
-       jTable = new JTable(new Modelo());
+        Modelo modelo = new Modelo();
+        jTable = new JTable(modelo);
        jScrollPane = new JScrollPane(jTable);
        pnlView.add(jScrollPane, BorderLayout.CENTER);
        
+       pnlView.getBtnSearch().addActionListener((e)->{
+            btnSearch(e);
+        });
+       
     }
     
+    private void btnSearch(ActionEvent e){
+        Modelo modelo = new Modelo();
+    TableRowSorter<Modelo> sorter = new TableRowSorter<Modelo>(((Modelo) jTable.getModel())); 
+    sorter.setRowFilter(RowFilter.regexFilter(pnlView.getTxtSearch().getText()));
+
+    jTable.setRowSorter(sorter);
+    
+    }
+    
+    
 }
+
 
 //Creacion del modelo de la tabla
 

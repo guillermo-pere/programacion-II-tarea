@@ -117,12 +117,7 @@ public class FrmConversionApp extends javax.swing.JFrame {
     }//GEN-LAST:event_btnTempActionPerformed
 
     private void btnCurrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCurrActionPerformed
-        if(pnlVehicle == null){
-            pnlVehicle = new PnlVehicle();
-            pnlVehicleController = new PnlVehicleController(pnlVehicle);
-        }
-        
-        addComponent(pnlVehicle);
+
     }//GEN-LAST:event_btnCurrActionPerformed
 
     /**
