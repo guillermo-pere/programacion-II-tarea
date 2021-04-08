@@ -5,6 +5,7 @@
  */
 package ni.edu.uni.programacion.views.panels;
 
+import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
@@ -29,6 +30,18 @@ public class PnlViewVehicleWork extends javax.swing.JPanel {
         return txtFinder;
     }
 
+    public JButton getBtnDelete() {
+        return btnDelete;
+    }
+
+    public JButton getBtnNew() {
+        return btnNew;
+    }
+
+    public JButton getBtnUpdate() {
+        return btnUpdate;
+    }
+
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -41,9 +54,9 @@ public class PnlViewVehicleWork extends javax.swing.JPanel {
         java.awt.GridBagConstraints gridBagConstraints;
 
         jPanel3 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnNew = new javax.swing.JButton();
+        btnUpdate = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         txtFinder = new javax.swing.JTextField();
@@ -55,14 +68,14 @@ public class PnlViewVehicleWork extends javax.swing.JPanel {
 
         jPanel3.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
 
-        jButton1.setText("New");
-        jPanel3.add(jButton1);
+        btnNew.setText("New");
+        jPanel3.add(btnNew);
 
-        jButton2.setText("Update");
-        jPanel3.add(jButton2);
+        btnUpdate.setText("Update");
+        jPanel3.add(btnUpdate);
 
-        jButton3.setText("Delete");
-        jPanel3.add(jButton3);
+        btnDelete.setText("Delete");
+        jPanel3.add(btnDelete);
 
         add(jPanel3, java.awt.BorderLayout.PAGE_END);
         jPanel3.getAccessibleContext().setAccessibleParent(this);
@@ -110,9 +123,9 @@ public class PnlViewVehicleWork extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnNew;
+    private javax.swing.JButton btnUpdate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

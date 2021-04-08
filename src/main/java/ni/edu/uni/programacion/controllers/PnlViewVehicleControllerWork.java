@@ -5,6 +5,9 @@
  */
 package ni.edu.uni.programacion.controllers;
 
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.FileNotFoundException;
@@ -13,12 +16,14 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
+import javax.swing.JDialog;
 import javax.swing.RowFilter;
 import javax.swing.table.TableRowSorter;
 import ni.edu.uni.programacion.backend.dao.implementation.JsonVehicleDaoImpl;
 import ni.edu.uni.programacion.backend.pojo.Vehicle;
 import ni.edu.uni.programacion.data.models.ListTableModel;
-import ni.edu.uni.programacion.views.panels.PnlViewVehicle;
+import ni.edu.uni.programacion.views.FrmVehicle;
+import ni.edu.uni.programacion.views.panels.PnlVehicle;
 import ni.edu.uni.programacion.views.panels.PnlViewVehicleWork;
 
 /**
@@ -28,6 +33,8 @@ import ni.edu.uni.programacion.views.panels.PnlViewVehicleWork;
 public class PnlViewVehicleControllerWork {
     private PnlViewVehicleWork pnlViewVehicleWork;
     private JsonVehicleDaoImpl jsonVehicleDaoImpl;
+    private PnlVehicle pnlVehicle;
+    private PnlVehicleController pnlVehicleController;
     private ListTableModel tblViewVehicleModel;
     private List<Vehicle> vehicles;
     private final String[] HEADERS = new String[]{"StockNumber","Year","Make","Model",
@@ -57,12 +64,33 @@ public class PnlViewVehicleControllerWork {
         } catch (IOException ex) {
             Logger.getLogger(PnlViewVehicleControllerWork.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        pnlViewVehicleWork.getBtnNew().addActionListener((e)->{
+            btnNewActionListener(e);
+        });
     }
     
     private void txtFinderKeyTyped(KeyEvent e){
         RowFilter<ListTableModel, Object> rf = null;        
         rf = RowFilter.regexFilter(pnlViewVehicleWork.getTxtFinder().getText(), 0,1,2,3,4,5,6,7,8,9);
         tblRowSorter.setRowFilter(rf);
+    }
+    
+    private void btnNewActionListener(ActionEvent e){
+        if(pnlVehicle == null){
+            pnlVehicle = new PnlVehicle();
+            try {
+                pnlVehicleController = new  PnlVehicleController(pnlVehicle);
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(FrmVehicle.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+         JDialog dialog = new JDialog();
+        Component add = dialog.add(pnlVehicle);
+        dialog.setSize(new Dimension(400, 600));
+        dialog.setTitle("New Vehicle.");
+        dialog.setVisible(true);
+        
     }
     
     private void loadTable() throws IOException{
