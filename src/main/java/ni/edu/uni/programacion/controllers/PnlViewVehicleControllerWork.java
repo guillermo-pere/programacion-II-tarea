@@ -102,15 +102,13 @@ public class PnlViewVehicleControllerWork {
     }
     
     private void btnDeleteActionListener(ActionEvent e) throws IOException{
+        List<Vehicle> v = jsonVehicleDaoImpl.getAll().stream().collect(Collectors.toList());
         int index = pnlViewVehicleWork.getTblViewVehicle().getSelectedRow();
         
-        vehicles = jsonVehicleDaoImpl.getAll().stream().collect(Collectors.toList());
-        
-        for (int i = 0; i < vehicles.size(); i++) {
-            if(i == index){
-                jsonVehicleDaoImpl.delete(vehicles.get(index));
-            }
+        if(index == -1){
+            return;
         }
+        jsonVehicleDaoImpl.delete(v.get(index));
     }
     
     private void loadTable() throws IOException{

@@ -9,10 +9,10 @@ import com.google.gson.Gson;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.RandomAccessFile;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 import ni.edu.uni.programacion.backend.dao.VehicleDao;
 import ni.edu.uni.programacion.backend.pojo.Vehicle;
 
@@ -74,17 +74,17 @@ public class JsonVehicleDaoImpl extends RandomTemplate implements VehicleDao{
 
     @Override
     public boolean delete(Vehicle t) throws IOException {
-        Collection<Vehicle> v = getAll();
+        List<Vehicle> v = getAll().stream().collect(Collectors.toList());
         
         getCustomRandom().getRafH().setLength(0);
         getCustomRandom().getRafH().setLength(SIZE);
         
         
         for (Vehicle vehicle : v) {
-            if(t.getStockNumber() == vehicle.getStockNumber()){
-                break;
+            if(!vehicle.getVin().equals(t.getVin())){
+               create(vehicle);
             }
-            create(vehicle);
+            
         }
         
         return true;
