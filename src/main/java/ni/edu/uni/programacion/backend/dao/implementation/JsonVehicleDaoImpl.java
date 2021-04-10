@@ -9,6 +9,7 @@ import com.google.gson.Gson;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.RandomAccessFile;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -73,7 +74,20 @@ public class JsonVehicleDaoImpl extends RandomTemplate implements VehicleDao{
 
     @Override
     public boolean delete(Vehicle t) throws IOException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Collection<Vehicle> v = getAll();
+        
+        getCustomRandom().getRafH().setLength(0);
+        getCustomRandom().getRafH().setLength(SIZE);
+        
+        
+        for (Vehicle vehicle : v) {
+            if(t.getStockNumber() == vehicle.getStockNumber()){
+                break;
+            }
+            create(vehicle);
+        }
+        
+        return true;
     }
 
     @Override

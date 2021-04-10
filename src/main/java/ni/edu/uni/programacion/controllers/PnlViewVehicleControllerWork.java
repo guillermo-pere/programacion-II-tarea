@@ -68,6 +68,14 @@ public class PnlViewVehicleControllerWork {
         pnlViewVehicleWork.getBtnNew().addActionListener((e)->{
             btnNewActionListener(e);
         });
+        
+        pnlViewVehicleWork.getBtnDelete().addActionListener((e) -> {
+            try {
+                btnDeleteActionListener(e);
+            } catch (IOException ex) {
+                Logger.getLogger(PnlViewVehicleControllerWork.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
     }
     
     private void txtFinderKeyTyped(KeyEvent e){
@@ -91,6 +99,18 @@ public class PnlViewVehicleControllerWork {
         dialog.setTitle("New Vehicle.");
         dialog.setVisible(true);
         
+    }
+    
+    private void btnDeleteActionListener(ActionEvent e) throws IOException{
+        int index = pnlViewVehicleWork.getTblViewVehicle().getSelectedRow();
+        
+        vehicles = jsonVehicleDaoImpl.getAll().stream().collect(Collectors.toList());
+        
+        for (int i = 0; i < vehicles.size(); i++) {
+            if(i == index){
+                jsonVehicleDaoImpl.delete(vehicles.get(index));
+            }
+        }
     }
     
     private void loadTable() throws IOException{

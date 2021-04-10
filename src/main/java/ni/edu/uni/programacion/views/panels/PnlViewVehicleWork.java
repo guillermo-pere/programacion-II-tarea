@@ -41,6 +41,8 @@ public class PnlViewVehicleWork extends javax.swing.JPanel {
     public JButton getBtnUpdate() {
         return btnUpdate;
     }
+    
+    
 
     
     /**
@@ -75,6 +77,11 @@ public class PnlViewVehicleWork extends javax.swing.JPanel {
         jPanel3.add(btnUpdate);
 
         btnDelete.setText("Delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
         jPanel3.add(btnDelete);
 
         add(jPanel3, java.awt.BorderLayout.PAGE_END);
@@ -120,6 +127,10 @@ public class PnlViewVehicleWork extends javax.swing.JPanel {
 
         add(jPanel2, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+ 
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
