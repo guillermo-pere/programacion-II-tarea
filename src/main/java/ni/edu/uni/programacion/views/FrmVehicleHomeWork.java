@@ -7,6 +7,7 @@ package ni.edu.uni.programacion.views;
 
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
 import java.io.FileNotFoundException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -90,6 +91,11 @@ public class FrmVehicleHomeWork extends javax.swing.JFrame {
         jMenu1.add(jMenuItem2);
 
         jMenuItem3.setText("Exit");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem3);
 
         jMenuBar1.add(jMenu1);
@@ -113,6 +119,9 @@ public class FrmVehicleHomeWork extends javax.swing.JFrame {
             }
         }
          JDialog dialog = new JDialog();
+          pnlVehicle.getBtnCancel().addActionListener((e)->{
+            btnCancelActionListener(e, dialog);
+        });
         Component add = dialog.add(pnlVehicle);
         dialog.setSize(new Dimension(400, 600));
         dialog.setTitle("New Vehicle.");
@@ -126,6 +135,10 @@ public class FrmVehicleHomeWork extends javax.swing.JFrame {
         }
         addComponent(pnlViewVehicleWork);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void addComponent(JComponent component) {
         pnlContent.removeAll();
@@ -175,6 +188,11 @@ public class FrmVehicleHomeWork extends javax.swing.JFrame {
             }
         });
     }
+     private void btnCancelActionListener(ActionEvent e, JDialog dialog){
+        dialog.dispose();
+    }
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu jMenu1;

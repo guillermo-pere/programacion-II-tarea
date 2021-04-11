@@ -6,6 +6,7 @@
 package ni.edu.uni.programacion.views.panels;
 
 import java.awt.Color;
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
@@ -97,6 +98,70 @@ public class PnlVehicle extends javax.swing.JPanel {
 
     public JTextField getTxtStyle() {
         return txtStyle;
+    }
+
+    public void setBtngTransmission(ButtonGroup btngTransmission) {
+        this.btngTransmission = btngTransmission;
+    }
+
+    public void setCmbEColor(JComboBox<String> cmbEColor) {
+        this.cmbEColor = cmbEColor;
+    }
+
+    public void setCmbIColor(JComboBox<String> cmbIColor) {
+        this.cmbIColor = cmbIColor;
+    }
+
+    public void setCmbMake(JComboBox<String> cmbMake) {
+        this.cmbMake = cmbMake;
+    }
+
+    public void setCmbModel(JComboBox<String> cmbModel) {
+        this.cmbModel = cmbModel;
+    }
+
+    public void setCmbStatus(JComboBox<String> cmbStatus) {
+        this.cmbStatus = cmbStatus;
+    }
+
+    public void setCmbYear(JComboBox<String> cmbYear) {
+        this.cmbYear = cmbYear;
+    }
+
+    public void setFmtVin(JFormattedTextField fmtVin) {
+        this.fmtVin = fmtVin;
+    }
+
+    public void setRbtnAut(JRadioButton rbtnAut) {
+        this.rbtnAut = rbtnAut;
+    }
+
+    public void setRbtnMan(JRadioButton rbtnMan) {
+        this.rbtnMan = rbtnMan;
+    }
+
+    public void setSpnMiles(JSpinner spnMiles) {
+        this.spnMiles = spnMiles;
+    }
+
+    public void setSpnPrice(JSpinner spnPrice) {
+        this.spnPrice = spnPrice;
+    }
+
+    public void setTxtEngine(JTextField txtEngine) {
+        this.txtEngine = txtEngine;
+    }
+
+    public void setTxtImage(JTextField txtImage) {
+        this.txtImage = txtImage;
+    }
+
+    public void setTxtStock(JTextField txtStock) {
+        this.txtStock = txtStock;
+    }
+
+    public void setTxtStyle(JTextField txtStyle) {
+        this.txtStyle = txtStyle;
     }
 
     
@@ -494,4 +559,8 @@ public class PnlVehicle extends javax.swing.JPanel {
     private javax.swing.JTextField txtStock;
     private javax.swing.JTextField txtStyle;
     // End of variables declaration//GEN-END:variables
+
+    public void setTxtStock(String stock) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

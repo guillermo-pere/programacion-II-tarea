@@ -27,6 +27,7 @@ import ni.edu.uni.programacion.backend.dao.implementation.JsonVehicleDaoImpl;
 import ni.edu.uni.programacion.backend.pojo.Vehicle;
 import ni.edu.uni.programacion.backend.pojo.VehicleSubModel;
 import ni.edu.uni.programacion.views.panels.PnlVehicle;
+import ni.edu.uni.programacion.views.panels.PnlViewVehicleWork;
 
 /**
  *
@@ -35,6 +36,8 @@ import ni.edu.uni.programacion.views.panels.PnlVehicle;
 public class PnlVehicleController {
 
     private PnlVehicle pnlVehicle;
+    private PnlViewVehicleWork pnlViewVehicleWork;
+    private PnlViewVehicleControllerWork pnlViewVehicleControllerWork;
     private Gson gson;
     private List<VehicleSubModel> vehicleSubModels;
     private DefaultComboBoxModel cmbModelMake;
@@ -136,6 +139,7 @@ public class PnlVehicleController {
                     "Error message", JOptionPane.ERROR_MESSAGE);
             Logger.getLogger(PnlVehicleController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
     }
     
     private void btnBrowseActionListener(ActionEvent e){
